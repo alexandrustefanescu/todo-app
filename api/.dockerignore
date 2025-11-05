@@ -1,0 +1,14 @@
+target/
+.git/
+.gitignore
+README.md
+.env
+.env.local
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+.claude/
