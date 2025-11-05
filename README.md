@@ -23,8 +23,13 @@ todo-app/
 │   ├── QUICKSTART.md            # Quick start guide
 │   └── PROJECT_STRUCTURE.md     # Architecture details
 │
-├── client/                       # Frontend application
-│   └── (To be built)
+├── client/                       # Frontend application (Vanilla JavaScript + Bun)
+│   ├── index.html               # Main HTML file
+│   ├── app.js                   # Application logic
+│   ├── styles.css               # Styling
+│   ├── README.md                # Client documentation
+│   ├── BUN_SETUP.md             # Bun runtime setup
+│   └── package.json             # Dependencies (Bun)
 │
 ├── .gitignore                   # Git ignore rules
 └── README.md                    # This file
@@ -50,6 +55,22 @@ cargo run --release
 ```
 
 The API will be available at `http://localhost:8080`
+
+### Running the Client
+
+Navigate to the `client` folder:
+
+```bash
+cd client
+
+# 1. Install dependencies with Bun
+bun install
+
+# 2. Start the development server
+bun run dev
+```
+
+The client will be available at `http://localhost:3000` (or the port configured in your setup)
 
 ### Testing the API
 
@@ -94,13 +115,17 @@ curl -X DELETE http://localhost:8080/api/todos/{id}
 - **Serialization**: Serde 1.0
 
 ### Frontend (Client)
-- Coming soon...
+- **Language**: Vanilla JavaScript
+- **Runtime**: Bun
+- **Styling**: CSS3
+- **Build Tool**: Bun
 
 ## Prerequisites
 
 - **Rust 1.70+** - Install from https://rustup.rs/
 - **Docker & Docker Compose** - Install from https://www.docker.com/
 - **sqlx-cli** - Install with: `cargo install sqlx-cli --no-default-features --features postgres`
+- **Bun** - Install from https://bun.sh/
 
 ## Documentation
 
@@ -155,13 +180,16 @@ docker-compose down -v    # Stop and remove volumes
 ## Folder Organization
 
 - **api/** - Contains all backend/API code
+  - Rust Actix Web REST API
   - Follow the structure and documentation in `api/README.md`
   - Database configurations are in `api/.env`
   - API runs on port 8080
 
-- **client/** - Designated for frontend code
-  - To be implemented (React, Vue, Angular, etc.)
-  - Will consume the API from `http://localhost:8080/api`
+- **client/** - Frontend application (Vanilla JavaScript)
+  - Built with Vanilla JavaScript and Bun runtime
+  - See `client/README.md` for client documentation
+  - See `client/BUN_SETUP.md` for Bun setup instructions
+  - Consumes the API from `http://localhost:8080/api`
 
 ## API Features
 
@@ -207,12 +235,19 @@ PostgreSQL 18-alpine running in Docker:
 - Clean and rebuild: `docker-compose down -v && docker-compose up`
 - Run migrations: `sqlx migrate run`
 
+## Project Status
+
+1. ✅ API is set up and ready with full CRUD operations
+2. ✅ Frontend created with Vanilla JavaScript + Bun
+3. ✅ Frontend connected to API endpoints
+4. 🚀 Ready for deployment and further enhancements
+
 ## Next Steps
 
-1. ✅ API is set up and ready
-2. 📝 Create frontend in `client/` folder
-3. 🔗 Connect frontend to API endpoints
-4. 🚀 Deploy both services
+1. 🔧 Deploy frontend and API to production
+2. 📊 Add additional features (filters, search, etc.)
+3. 🔐 Implement authentication if needed
+4. 📱 Add responsive mobile design enhancements
 
 ## License
 
