@@ -18,6 +18,28 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - todo_network
+
+  api:
+    build: .
+    container_name: todo-app-rust
+    environment:
+      DATABASE_URL: postgres://postgres:password@postgres:5432/todo_db
+      PORT: 8080
+      RUST_LOG: info
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - todo_network
+    restart: unless-stopped
+
+networks:
+  todo_network:
+    driver: bridge
 
 volumes:
   postgres_data:
